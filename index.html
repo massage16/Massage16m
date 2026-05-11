@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خدمات مساج - الحجز</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#0f0f0f,#1c1c1c);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+.container{
+width:95%;
+max-width:420px;
+background:#111;
+padding:20px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,255,180,0.2);
+}
+
+h1{
+text-align:center;
+color:#00ffb3;
+margin-bottom:10px;
+}
+
+p{
+text-align:center;
+font-size:14px;
+color:#ccc;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:10px;
+outline:none;
+background:#222;
+color:white;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#00ffb3;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#00d19a;
+}
+
+.payment-box{
+background:#1a1a1a;
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+font-size:14px;
+color:#ddd;
+}
+
+.status{
+margin-top:10px;
+text-align:center;
+font-weight:bold;
+}
+
+.green{
+color:#00ff7b;
+}
+
+.red{
+color:#ff4d4d;
+}
+
+img{
+width:100%;
+margin-top:10px;
+border-radius:10px;
+display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>خدمات مساج</h1>
+<p>نظام الحجز والدفع</p>
+
+<input type="text" id="name" placeholder="الاسم">
+<input type="text" id="lastname" placeholder="اللقب">
+<input type="text" id="phone" placeholder="رقم الهاتف">
+
+<select id="wilaya">
+<option>اختر الولاية</option>
+<option>أدرار</option><option>الشلف</option><option>الأغواط</option>
+<option>أم البواقي</option><option>باتنة</option><option>بجاية</option>
+<option>بسكرة</option><option>بشار</option><option>البليدة</option>
+<option>البويرة</option><option>تمنراست</option><option>تبسة</option>
+<option>تلمسان</option><option>تيارت</option><option>تيزي وزو</option>
+<option>الجزائر</option><option>الجلفة</option><option>جيجل</option>
+<option>سطيف</option><option>سعيدة</option><option>سكيكدة</option>
+<option>سيدي بلعباس</option><option>عنابة</option><option>قالمة</option>
+<option>قسنطينة</option><option>المدية</option><option>مستغانم</option>
+<option>المسيلة</option><option>معسكر</option><option>ورقلة</option>
+<option>وهران</option><option>البيض</option><option>إليزي</option>
+<option>برج بوعريريج</option><option>بومرداس</option><option>الطارف</option>
+<option>تندوف</option><option>تيسمسيلت</option><option>الوادي</option>
+<option>خنشلة</option><option>سوق أهراس</option><option>تيبازة</option>
+<option>ميلة</option><option>عين الدفلى</option><option>النعامة</option>
+<option>عين تموشنت</option><option>غرداية</option><option>غليزان</option>
+</select>
+
+<div class="payment-box">
+💳 الدفع عبر بريدي موب:<br>
+<b>00799999004286372491</b>
+</div>
+
+<input type="file" id="receipt" accept="image/*" onchange="previewImage(event)">
+<img id="preview">
+
+<button onclick="send()">إرسال الحجز</button>
+
+<div id="status" class="status red">لم يتم الإرسال</div>
+
+</div>
+
+<script>
+function previewImage(event){
+let img = document.getElementById('preview');
+img.src = URL.createObjectURL(event.target.files[0]);
+img.style.display="block";
+}
+
+function send(){
+let name = document.getElementById('name').value;
+let lastname = document.getElementById('lastname').value;
+let phone = document.getElementById('phone').value;
+let wilaya = document.getElementById('wilaya').value;
+
+if(name=="" || lastname=="" || phone==""){
+document.getElementById('status').innerText="املأ جميع البيانات";
+document.getElementById('status').className="status red";
+return;
+}
+
+document.getElementById('status').innerText="تم إرسال الطلب - في انتظار التأكيد";
+document.getElementById('status').className="status green";
+}
+</script>
+
+</body>
+  </html>
