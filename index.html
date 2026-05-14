@@ -1,233 +1,289 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>خدمات مساج - الحجز</title>
+<title>خدمات مساج VIP</title>
 
 <style>
+
 body{
 margin:0;
 font-family:Arial;
-background:linear-gradient(135deg,#111,#222);
+background:#0f0f0f;
 color:white;
+}
+
+.hero{
+height:250px;
+background:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1200') center/cover;
 display:flex;
+align-items:center;
 justify-content:center;
-padding:20px;
+position:relative;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.55);
+}
+
+.hero h1{
+position:relative;
+z-index:2;
+font-size:34px;
+text-shadow:0 3px 10px rgba(0,0,0,0.8);
+}
+
+.gallery{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding:15px;
+}
+
+.gallery img{
+width:200px;
+height:130px;
+object-fit:cover;
+border-radius:12px;
+flex-shrink:0;
+}
+
+.stats{
+display:flex;
+justify-content:space-around;
+padding:15px;
+margin:10px;
+background:#1b1b1b;
+border:1px solid #333;
+border-radius:12px;
+}
+
+.stat-box{
+text-align:center;
+}
+
+.stat-box h2{
+color:#00ff99;
+margin:0;
 }
 
 .container{
-width:100%;
-max-width:450px;
-background:#1c1c1c;
+max-width:420px;
+margin:20px auto;
 padding:20px;
-border-radius:15px;
-box-shadow:0 0 15px rgba(255,255,255,0.1);
+background:#1a1a1a;
+border:1px solid #333;
+border-radius:16px;
 }
 
-h2{
-text-align:center;
-color:#00ffcc;
-}
-
-input,select,button{
+input,select{
 width:100%;
-padding:10px;
-margin:8px 0;
-border-radius:8px;
+padding:12px;
+margin-top:10px;
 border:none;
+border-radius:10px;
+background:#2b2b2b;
+color:white;
 outline:none;
 }
 
 button{
-background:#00ffcc;
-color:black;
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#00cc66;
+color:white;
+font-size:16px;
 font-weight:bold;
 cursor:pointer;
 }
 
-button:hover{
-background:#00ddb3;
-}
-
-.step{display:none;}
-.active{display:block;}
-
-.small{
-font-size:12px;
-opacity:0.8;
+.price{
+margin-top:10px;
+padding:10px;
 text-align:center;
+background:#111;
+border:1px solid #333;
+border-radius:10px;
+color:#00ff99;
 }
+
+.pay-box{
+margin-top:15px;
+padding:12px;
+background:#111;
+border:1px solid #333;
+border-radius:12px;
+text-align:center;
+line-height:2;
+color:#00ff99;
+}
+
+.notice{
+margin-top:10px;
+padding:10px;
+background:#003d1f;
+color:#8cffc1;
+border-radius:10px;
+text-align:center;
+font-size:13px;
+}
+
+.footer{
+text-align:center;
+padding:15px;
+color:#888;
+font-size:13px;
+}
+
+.telegram{
+position:fixed;
+bottom:15px;
+left:15px;
+background:#229ED9;
+padding:12px 18px;
+border-radius:50px;
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
 </style>
+
 </head>
 
 <body>
 
-<div class="container" id="app">
-
-<h2>حجز خدمات مساج</h2>
-
-<!-- ⛔ رسالة الإغلاق -->
-<div id="closed" style="display:none;text-align:center;padding:20px;">
-<h1>⛔ الموقع مغلق</h1>
-<p>أوقات العمل من 22:00 إلى 07:00</p>
-<h3 id="countdown" style="color:#00ffcc;"></h3>
+<div class="hero">
+<h1>خدمات مساج VIP</h1>
 </div>
 
-<!-- 🔵 STEP 1 -->
-<div id="step1" class="step active">
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1">
+<img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15">
+<img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773">
+<img src="https://images.unsplash.com/photo-1518611012118-696072aa579a">
+</div>
 
-<input type="text" id="name" placeholder="الاسم">
-<input type="text" id="lastname" placeholder="اللقب">
-<input type="tel" id="phone" placeholder="رقم الهاتف">
+<div class="stats">
 
-<select id="state">
-<option>اختر الولاية</option>
-<option>الجزائر</option><option>وهران</option><option>قسنطينة</option>
-<option>باتنة</option><option>بجاية</option><option>سطيف</option>
+<div class="stat-box">
+<h2 id="online">148</h2>
+<p>متصل الآن</p>
+</div>
+
+<div class="stat-box">
+<h2 id="bookings">421</h2>
+<p>حجوزات</p>
+</div>
+
+</div>
+
+<div class="container">
+
+<form id="form">
+
+<input id="name" placeholder="الاسم" required>
+<input id="phone" placeholder="الهاتف" required>
+
+<!-- الولايات -->
+<select id="wilaya" required>
+<option value="">اختر الولاية</option>
+<option>أدرار</option><option>الشلف</option><option>الأغواط</option>
+<option>أم البواقي</option><option>باتنة</option><option>بجاية</option>
+<option>بسكرة</option><option>بشار</option><option>البليدة</option>
+<option>البويرة</option><option>تمنراست</option><option>تبسة</option>
+<option>تلمسان</option><option>تيارت</option><option>تيزي وزو</option>
+<option>الجزائر</option><option>الجلفة</option><option>جيجل</option>
+<option>سطيف</option><option>سعيدة</option><option>سكيكدة</option>
+<option>سيدي بلعباس</option><option>عنابة</option><option>قالمة</option>
+<option>قسنطينة</option><option>المدية</option><option>مستغانم</option>
+<option>المسيلة</option><option>معسكر</option><option>ورقلة</option>
+<option>وهران</option><option>البيض</option><option>إليزي</option>
+<option>برج بوعريريج</option><option>بومرداس</option><option>الطارف</option>
+<option>تندوف</option><option>تيسمسيلت</option><option>الوادي</option>
+<option>خنشلة</option><option>سوق أهراس</option><option>تيبازة</option>
+<option>ميلة</option><option>عين الدفلى</option><option>النعامة</option>
+<option>عين تموشنت</option><option>غرداية</option><option>غليزان</option>
 </select>
 
 <select id="service">
-<option>اختر الخدمة</option>
-<option>مساج عادي</option>
-<option>مساج VIP</option>
+<option value="6000">مساج عادي - 6000 دج</option>
+<option value="10000">مساج VIP - 10000 دج</option>
 </select>
 
-<button onclick="nextStep()">التالي ➜ الدفع</button>
+<input id="promo" placeholder="كود البرومو">
+
+<div class="price">
+السعر النهائي: <span id="price">6000</span> دج
+</div>
+
+<div class="pay-box">
+الدفع عبر بريدي موب:<br>
+<b>00799999004286372491</b>
+</div>
+
+<input type="file" id="receipt" accept="image/*" required>
+
+<div class="notice">
+يجب إرسال وصل الدفع لإتمام الطلب
+</div>
+
+<button type="submit">إرسال الطلب</button>
+
+</form>
 
 </div>
 
-<!-- 🟢 STEP 2 -->
-<div id="step2" class="step">
-
-<p class="small">💳 يجب رفع وصل الدفع لإتمام الحجز</p>
-
-<input type="file" id="proof">
-
-<button onclick="send()">تأكيد الحجز</button>
-
-<button onclick="backStep()" style="background:#444;color:white;">
-رجوع
-</button>
-
+<div class="footer">
+© جميع الحقوق محفوظة
 </div>
 
-</div>
+<a class="telegram" href="https://t.me/NXL_97">تواصل</a>
 
 <script>
 
-/* =======================
-   وقت العمل
-======================= */
-function checkTime(){
+let base = 6000;
 
-let now=new Date();
-let hour=now.getHours();
+service.onchange = () => {
+base = parseInt(service.value);
+calc();
+};
 
-let open=(hour>=22 || hour<7);
+promo.oninput = calc;
 
-if(!open){
+function calc(){
+let code = promo.value.trim();
+let price = base;
 
-document.getElementById("step1").style.display="none";
-document.getElementById("step2").style.display="none";
-document.getElementById("closed").style.display="block";
-
-let next=new Date();
-next.setHours(7,0,0,0);
-
-if(hour>=22){
-next.setDate(next.getDate()+1);
+if(code === "mn16" && base === 10000){
+price = 8000;
 }
 
-let diff=next-now;
-
-let h=Math.floor(diff/(1000*60*60));
-let m=Math.floor((diff%(1000*60*60))/(1000*60));
-let s=Math.floor((diff%(1000*60))/1000);
-
-document.getElementById("countdown").innerText=
-`يفتح بعد: ${h}س ${m}د ${s}ث`;
-
-return false;
+document.getElementById("price").innerText = price;
 }
 
-return true;
-}
+setInterval(()=>{
+let el=document.getElementById("online");
+let v=parseInt(el.innerText);
+v += Math.floor(Math.random()*5)-2;
+if(v<120) v=120;
+if(v>260) v=260;
+el.innerText=v;
+},4000);
 
-setInterval(checkTime,1000);
-checkTime();
-
-/* =======================
-   الخطوات
-======================= */
-function nextStep(){
-if(!checkTime()) return;
-
-document.getElementById("step1").classList.remove("active");
-document.getElementById("step2").classList.add("active");
-}
-
-function backStep(){
-document.getElementById("step2").classList.remove("active");
-document.getElementById("step1").classList.add("active");
-}
-
-/* =======================
-   الإرسال
-======================= */
-async function send(){
-
-if(!checkTime()) return;
-
-let name=document.getElementById("name").value;
-let lastname=document.getElementById("lastname").value;
-let phone=document.getElementById("phone").value;
-let state=document.getElementById("state").value;
-let service=document.getElementById("service").value;
-let proof=document.getElementById("proof").files[0];
-
-if(!name||!lastname||!phone){
-alert("⚠️ املأ جميع البيانات");
-return;
-}
-
-if(!proof){
-alert("⚠️ يجب رفع وصل الدفع");
-return;
-}
-
-let token="YOUR_BOT_TOKEN";
-let chat_id="YOUR_CHAT_ID";
-
-let message=
-`🧾 طلب حجز جديد
-👤 الاسم: ${name}
-👤 اللقب: ${lastname}
-📞 الهاتف: ${phone}
-📍 الولاية: ${state}
-💆 الخدمة: ${service}
-💳 وصل الدفع: مرفوع ✔️`;
-
-let url=`https://api.telegram.org/bot${token}/sendMessage`;
-
-let res=await fetch(url,{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-chat_id:chat_id,
-text:message
-})
-});
-
-if(res.ok){
-alert("✔️ تم إرسال الحجز");
-}else{
-alert("❌ خطأ في الإرسال");
-}
-
-}
+setInterval(()=>{
+bookings.innerText=parseInt(bookings.innerText)+1;
+},10000);
 
 </script>
 
 </body>
-</html>
+                         </html>
