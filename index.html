@@ -1,172 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خدمات سبا VIP</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#111;
+color:white;
+}
+
+.container{
+max-width:420px;
+margin:30px auto;
+background:#1b1b1b;
+padding:20px;
+border-radius:15px;
+border:1px solid #333;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#2b2b2b;
+color:white;
+box-sizing:border-box;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#00c46a;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.price{
+margin-top:15px;
+padding:12px;
+background:#111;
+border-radius:10px;
+text-align:center;
+font-size:20px;
+color:#00ff99;
+}
+
+.notice{
+margin-top:10px;
+padding:10px;
+background:#003d1f;
+border-radius:10px;
+text-align:center;
+font-size:13px;
+color:#8cffc1;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 style="text-align:center">خدمات سبا VIP</h1>
+
+<form id="form">
+
+<input type="text" id="name" placeholder="الاسم" required>
+
+<input type="tel" id="phone" placeholder="الهاتف" required>
+
+<select id="wilaya" required>
+<option value="">اختر الولاية</option>
+<option>وهران</option>
+<option>الجزائر</option>
+<option>عنابة</option>
+<option>قسنطينة</option>
+</select>
+
+<select id="service">
+<option value="8000">سبا عادي - 8000 دج</option>
+<option value="16000">سبا VIP - 16000 دج</option>
+</select>
+
+<input type="text" id="promo" placeholder="كود البرومو (اختياري)">
+
+<div class="price">
+السعر النهائي:
+<span id="price">8000</span> دج
+</div>
+
+<input type="file" id="receipt" accept="image/*" required>
+
+<div class="notice">
+يجب إرسال وصل الدفع لإتمام الطلب
+</div>
+
+<button type="submit">إرسال الطلب</button>
+
+</form>
+
+</div>
+
 <script>
+
+const service = document.getElementById("service");
+const promo = document.getElementById("promo");
+const priceBox = document.getElementById("price");
 
 let base = 8000;
 
-const service = document.getElementById("service");
-
-const promo = document.getElementById("promo");
-
-service.onchange = () => {
-
-base = parseInt(service.value);
-
-calc();
-
-};
-
-promo.addEventListener("input", calc);
-
 function calc(){
+base = parseInt(service.value);
 
 let finalPrice = base;
 
-let code = promo.value.trim();
-
-if(code === "Malak97" && base ===16000){
-
+// كود الخصم
+if(promo.value.trim() === "Malak97" && base === 16000){
 finalPrice = 11000;
-
 }
 
-document.getElementById("price").innerText = finalPrice;
-
+priceBox.innerText = finalPrice;
 }
 
-setInterval(()=>{
+service.onchange = calc;
+promo.oninput = calc;
 
-let el = document.getElementById("online");
-
-let v = parseInt(el.innerText);
-
-v += Math.floor(Math.random()*5)-2;
-
-if(v < 120) v = 120;
-
-if(v > 260) v = 260;
-
-el.innerText = v;
-
-},4000);
-
-setInterval(()=>{
-
-let bookings = document.getElementById("bookings");
-
-bookings.innerText = parseInt(bookings.innerText)+1;
-
-},10000);
-
+// ====== تيليغرام ======
 const token = "8746466394:AAGypQv2KmLBYmlRYkO_hsFWiY7_REGFWHE";
-
 const chat_id = "8735699172";
 
 document.getElementById("form").addEventListener("submit", async function(e){
-
 e.preventDefault();
 
+calc();
+
 let name = document.getElementById("name").value;
-
 let phone = document.getElementById("phone").value;
-
 let wilaya = document.getElementById("wilaya").value;
+let serviceText = service.options[service.selectedIndex].text;
+let price = priceBox.innerText;
+let promoCode = promo.value || "لا يوجد";
 
-let serviceText =
-document.getElementById("service").selectedOptions[0].text;
-
-let price =
-document.getElementById("price").innerText;
-
-let promoCode =
-promo.value || "لا يوجد";
-
-let text =
-
-`طلب جديد
+let text = `
+طلب جديد
 
 الاسم: ${name}
-
 الهاتف: ${phone}
-
 الولاية: ${wilaya}
-
 الخدمة: ${serviceText}
-
 البرومو: ${promoCode}
-
-السعر النهائي: ${price} دج`;
+السعر النهائي: ${price} دج
+`;
 
 try{
 
-await fetch(
-
-`https://api.telegram.org/bot${token}/sendMessage`,
-
-{
-
+await fetch(`https://api.telegram.org/bot${token}/sendMessage`,{
 method:"POST",
-
-headers:{
-
-"Content-Type":"application/json"
-
-},
-
+headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
-
 chat_id:chat_id,
-
 text:text
-
 })
+});
 
-}
-
-);
-
-let file =
-document.getElementById("receipt").files[0];
+let file = document.getElementById("receipt").files[0];
 
 if(file){
 
 let formData = new FormData();
-
 formData.append("chat_id", chat_id);
-
 formData.append("photo", file);
-
 formData.append("caption", text);
 
-await fetch(
-
-`https://api.telegram.org/bot${token}/sendPhoto`,
-
-{
-
+await fetch(`https://api.telegram.org/bot${token}/sendPhoto`,{
 method:"POST",
-
 body:formData
-
-}
-
-);
+});
 
 }
 
 alert("تم إرسال الطلب بنجاح");
-
 document.getElementById("form").reset();
+priceBox.innerText = "8000";
 
-document.getElementById("price").innerText = "8000";
-
-}
-catch(error){
-
-alert("حدث خطأ أثناء الإرسال");
-
-console.log(error);
-
+}catch(err){
+alert("حدث خطأ في الإرسال");
+console.log(err);
 }
 
 });
 
 </script>
+
+</body>
+</html>
