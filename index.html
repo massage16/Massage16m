@@ -1,322 +1,10 @@
-HTML
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>خدمات سبا VIP</title>
-
-<style>
-
-body{
-margin:0;
-font-family:Arial;
-background:#0f0f0f;
-color:white;
-}
-
-.hero{
-height:250px;
-background:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=1200') center/cover;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
-}
-
-.hero::after{
-content:"";
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.55);
-}
-
-.hero h1{
-position:relative;
-z-index:2;
-font-size:34px;
-text-shadow:0 3px 10px rgba(0,0,0,0.8);
-}
-
-.gallery{
-display:flex;
-gap:10px;
-overflow-x:auto;
-padding:15px;
-}
-
-.gallery img{
-width:200px;
-height:130px;
-object-fit:cover;
-border-radius:12px;
-flex-shrink:0;
-}
-
-.stats{
-display:flex;
-justify-content:space-around;
-padding:15px;
-margin:10px;
-background:#1b1b1b;
-border:1px solid #333;
-border-radius:12px;
-}
-
-.stat-box{
-text-align:center;
-}
-
-.stat-box h2{
-color:#00ff99;
-margin:0;
-}
-
-.container{
-max-width:420px;
-margin:20px auto;
-padding:20px;
-background:#1a1a1a;
-border:1px solid #333;
-border-radius:16px;
-}
-
-input,select{
-width:100%;
-padding:12px;
-margin-top:10px;
-border:none;
-border-radius:10px;
-background:#2b2b2b;
-color:white;
-outline:none;
-box-sizing:border-box;
-}
-
-button{
-width:100%;
-padding:14px;
-margin-top:15px;
-border:none;
-border-radius:10px;
-background:#00cc66;
-color:white;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-}
-
-button:hover{
-background:#00aa55;
-}
-
-.price{
-margin-top:10px;
-padding:10px;
-text-align:center;
-background:#111;
-border:1px solid #333;
-border-radius:10px;
-color:#00ff99;
-font-size:18px;
-}
-
-.pay-box{
-margin-top:15px;
-padding:12px;
-background:#111;
-border:1px solid #333;
-border-radius:12px;
-text-align:center;
-line-height:2;
-color:#00ff99;
-}
-
-.notice{
-margin-top:10px;
-padding:10px;
-background:#003d1f;
-color:#8cffc1;
-border-radius:10px;
-text-align:center;
-font-size:13px;
-}
-
-.footer{
-text-align:center;
-padding:15px;
-color:#888;
-font-size:13px;
-}
-
-.telegram{
-position:fixed;
-bottom:15px;
-left:15px;
-background:#229ED9;
-padding:12px 18px;
-border-radius:50px;
-color:white;
-text-decoration:none;
-font-weight:bold;
-z-index:999;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<div class="hero">
-<h1>خدمات سبا VIP</h1>
-</div>
-
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1">
-<img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15">
-<img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773">
-<img src="https://images.unsplash.com/photo-1518611012118-696072aa579a">
-</div>
-
-<div class="stats">
-
-<div class="stat-box">
-<h2 id="online">148</h2>
-<p>متصل الآن</p>
-</div>
-
-<div class="stat-box">
-<h2 id="bookings">421</h2>
-<p>حجوزات</p>
-</div>
-
-</div>
-
-<div class="container">
-
-<form id="form">
-
-<input type="text" id="name" placeholder="الاسم" required>
-
-<input type="tel" id="phone" placeholder="الهاتف" required>
-
-<select id="wilaya" required>
-
-<option value="">اختر الولاية</option>
-
-<option>أدرار</option>
-<option>الشلف</option>
-<option>الأغواط</option>
-<option>أم البواقي</option>
-<option>باتنة</option>
-<option>بجاية</option>
-<option>بسكرة</option>
-<option>بشار</option>
-<option>البليدة</option>
-<option>البويرة</option>
-<option>تمنراست</option>
-<option>تبسة</option>
-<option>تلمسان</option>
-<option>تيارت</option>
-<option>تيزي وزو</option>
-<option>الجزائر</option>
-<option>الجلفة</option>
-<option>جيجل</option>
-<option>سطيف</option>
-<option>سعيدة</option>
-<option>سكيكدة</option>
-<option>سيدي بلعباس</option>
-<option>عنابة</option>
-<option>قالمة</option>
-<option>قسنطينة</option>
-<option>المدية</option>
-<option>مستغانم</option>
-<option>المسيلة</option>
-<option>معسكر</option>
-<option>ورقلة</option>
-<option>وهران</option>
-<option>البيض</option>
-<option>إليزي</option>
-<option>برج بوعريريج</option>
-<option>بومرداس</option>
-<option>الطارف</option>
-<option>تندوف</option>
-<option>تيسمسيلت</option>
-<option>الوادي</option>
-<option>خنشلة</option>
-<option>سوق أهراس</option>
-<option>تيبازة</option>
-<option>ميلة</option>
-<option>عين الدفلى</option>
-<option>النعامة</option>
-<option>عين تموشنت</option>
-<option>غرداية</option>
-<option>غليزان</option>
-
-</select>
-
-<select id="service">
-
-<option value="8000">سبا عادي - 8000 دج</option>
-
-<option value="16000">سبا VIP - 16000 دج</option>
-
-</select>
-
-<div class="price">
-
-السعر النهائي:
-<span id="price">8000</span>
-دج
-
-</div>
-
-<div class="pay-box">
-
-الدفع عبر بريدي موب:<br>
-
-<b>00799999004286372491</b>
-
-</div>
-
-<input type="file" id="receipt" accept="image/*" required>
-
-<div class="notice">
-
-يجب إرسال وصل الدفع لإتمام الطلب
-
-</div>
-
-<button type="submit">
-
-إرسال الطلب
-
-</button>
-
-</form>
-
-</div>
-
-<div class="footer">
-
-© جميع الحقوق محفوظة
-
-</div>
-
-<a class="telegram" href="https://t.me/NXL_97">
-
-تواصل
-
-</a>
-
 <script>
 
 let base = 8000;
 
 const service = document.getElementById("service");
+
+const promo = document.getElementById("promo");
 
 service.onchange = () => {
 
@@ -326,9 +14,21 @@ calc();
 
 };
 
+promo.addEventListener("input", calc);
+
 function calc(){
 
-document.getElementById("price").innerText = base;
+let finalPrice = base;
+
+let code = promo.value.trim();
+
+if(code === "Malak97" && base ===16000){
+
+finalPrice = 11000;
+
+}
+
+document.getElementById("price").innerText = finalPrice;
 
 }
 
@@ -356,13 +56,9 @@ bookings.innerText = parseInt(bookings.innerText)+1;
 
 },10000);
 
-/* بيانات التلغرام */
+const token = "8746466394:AAGypQv2KmLBYmlRYkO_hsFWiY7_REGFWHE";
 
-const token = "ضع_توكن_البوت";
-
-const chat_id = "ضع_chat_id";
-
-/* إرسال الطلب */
+const chat_id = "8735699172";
 
 document.getElementById("form").addEventListener("submit", async function(e){
 
@@ -380,6 +76,9 @@ document.getElementById("service").selectedOptions[0].text;
 let price =
 document.getElementById("price").innerText;
 
+let promoCode =
+promo.value || "لا يوجد";
+
 let text =
 
 `طلب جديد
@@ -392,11 +91,11 @@ let text =
 
 الخدمة: ${serviceText}
 
-السعر: ${price} دج`;
+البرومو: ${promoCode}
+
+السعر النهائي: ${price} دج`;
 
 try{
-
-/* إرسال النص */
 
 await fetch(
 
@@ -423,8 +122,6 @@ text:text
 }
 
 );
-
-/* إرسال الصورة */
 
 let file =
 document.getElementById("receipt").files[0];
@@ -473,7 +170,3 @@ console.log(error);
 });
 
 </script>
-
-</body>
-
-</html>
