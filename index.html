@@ -1,10 +1,12 @@
+HTML
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>خدمات مساج VIP</title>
+
+<title>خدمات سبا VIP</title>
 
 <style>
 
@@ -90,6 +92,7 @@ border-radius:10px;
 background:#2b2b2b;
 color:white;
 outline:none;
+box-sizing:border-box;
 }
 
 button{
@@ -105,6 +108,10 @@ font-weight:bold;
 cursor:pointer;
 }
 
+button:hover{
+background:#00aa55;
+}
+
 .price{
 margin-top:10px;
 padding:10px;
@@ -113,6 +120,7 @@ background:#111;
 border:1px solid #333;
 border-radius:10px;
 color:#00ff99;
+font-size:18px;
 }
 
 .pay-box{
@@ -153,6 +161,7 @@ border-radius:50px;
 color:white;
 text-decoration:none;
 font-weight:bold;
+z-index:999;
 }
 
 </style>
@@ -162,7 +171,7 @@ font-weight:bold;
 <body>
 
 <div class="hero">
-<h1>خدمات مساج VIP</h1>
+<h1>خدمات سبا VIP</h1>
 </div>
 
 <div class="gallery">
@@ -190,100 +199,281 @@ font-weight:bold;
 
 <form id="form">
 
-<input id="name" placeholder="الاسم" required>
-<input id="phone" placeholder="الهاتف" required>
+<input type="text" id="name" placeholder="الاسم" required>
 
-<!-- الولايات -->
+<input type="tel" id="phone" placeholder="الهاتف" required>
+
 <select id="wilaya" required>
+
 <option value="">اختر الولاية</option>
-<option>أدرار</option><option>الشلف</option><option>الأغواط</option>
-<option>أم البواقي</option><option>باتنة</option><option>بجاية</option>
-<option>بسكرة</option><option>بشار</option><option>البليدة</option>
-<option>البويرة</option><option>تمنراست</option><option>تبسة</option>
-<option>تلمسان</option><option>تيارت</option><option>تيزي وزو</option>
-<option>الجزائر</option><option>الجلفة</option><option>جيجل</option>
-<option>سطيف</option><option>سعيدة</option><option>سكيكدة</option>
-<option>سيدي بلعباس</option><option>عنابة</option><option>قالمة</option>
-<option>قسنطينة</option><option>المدية</option><option>مستغانم</option>
-<option>المسيلة</option><option>معسكر</option><option>ورقلة</option>
-<option>وهران</option><option>البيض</option><option>إليزي</option>
-<option>برج بوعريريج</option><option>بومرداس</option><option>الطارف</option>
-<option>تندوف</option><option>تيسمسيلت</option><option>الوادي</option>
-<option>خنشلة</option><option>سوق أهراس</option><option>تيبازة</option>
-<option>ميلة</option><option>عين الدفلى</option><option>النعامة</option>
-<option>عين تموشنت</option><option>غرداية</option><option>غليزان</option>
+
+<option>أدرار</option>
+<option>الشلف</option>
+<option>الأغواط</option>
+<option>أم البواقي</option>
+<option>باتنة</option>
+<option>بجاية</option>
+<option>بسكرة</option>
+<option>بشار</option>
+<option>البليدة</option>
+<option>البويرة</option>
+<option>تمنراست</option>
+<option>تبسة</option>
+<option>تلمسان</option>
+<option>تيارت</option>
+<option>تيزي وزو</option>
+<option>الجزائر</option>
+<option>الجلفة</option>
+<option>جيجل</option>
+<option>سطيف</option>
+<option>سعيدة</option>
+<option>سكيكدة</option>
+<option>سيدي بلعباس</option>
+<option>عنابة</option>
+<option>قالمة</option>
+<option>قسنطينة</option>
+<option>المدية</option>
+<option>مستغانم</option>
+<option>المسيلة</option>
+<option>معسكر</option>
+<option>ورقلة</option>
+<option>وهران</option>
+<option>البيض</option>
+<option>إليزي</option>
+<option>برج بوعريريج</option>
+<option>بومرداس</option>
+<option>الطارف</option>
+<option>تندوف</option>
+<option>تيسمسيلت</option>
+<option>الوادي</option>
+<option>خنشلة</option>
+<option>سوق أهراس</option>
+<option>تيبازة</option>
+<option>ميلة</option>
+<option>عين الدفلى</option>
+<option>النعامة</option>
+<option>عين تموشنت</option>
+<option>غرداية</option>
+<option>غليزان</option>
+
 </select>
 
 <select id="service">
-<option value="6000">مساج عادي - 6000 دج</option>
-<option value="10000">مساج VIP - 10000 دج</option>
+
+<option value="8000">سبا عادي - 8000 دج</option>
+
+<option value="16000">سبا VIP - 16000 دج</option>
+
 </select>
 
-<input id="promo" placeholder="كود البرومو">
-
 <div class="price">
-السعر النهائي: <span id="price">6000</span> دج
+
+السعر النهائي:
+<span id="price">8000</span>
+دج
+
 </div>
 
 <div class="pay-box">
+
 الدفع عبر بريدي موب:<br>
+
 <b>00799999004286372491</b>
+
 </div>
 
 <input type="file" id="receipt" accept="image/*" required>
 
 <div class="notice">
+
 يجب إرسال وصل الدفع لإتمام الطلب
+
 </div>
 
-<button type="submit">إرسال الطلب</button>
+<button type="submit">
+
+إرسال الطلب
+
+</button>
 
 </form>
 
 </div>
 
 <div class="footer">
+
 © جميع الحقوق محفوظة
+
 </div>
 
-<a class="telegram" href="https://t.me/NXL_97">تواصل</a>
+<a class="telegram" href="https://t.me/NXL_97">
+
+تواصل
+
+</a>
 
 <script>
 
-let base = 6000;
+let base = 8000;
+
+const service = document.getElementById("service");
 
 service.onchange = () => {
+
 base = parseInt(service.value);
+
 calc();
+
 };
 
-promo.oninput = calc;
-
 function calc(){
-let code = promo.value.trim();
-let price = base;
 
-if(code === "mn16" && base === 10000){
-price = 8000;
-}
+document.getElementById("price").innerText = base;
 
-document.getElementById("price").innerText = price;
 }
 
 setInterval(()=>{
-let el=document.getElementById("online");
-let v=parseInt(el.innerText);
+
+let el = document.getElementById("online");
+
+let v = parseInt(el.innerText);
+
 v += Math.floor(Math.random()*5)-2;
-if(v<120) v=120;
-if(v>260) v=260;
-el.innerText=v;
+
+if(v < 120) v = 120;
+
+if(v > 260) v = 260;
+
+el.innerText = v;
+
 },4000);
 
 setInterval(()=>{
-bookings.innerText=parseInt(bookings.innerText)+1;
+
+let bookings = document.getElementById("bookings");
+
+bookings.innerText = parseInt(bookings.innerText)+1;
+
 },10000);
+
+/* بيانات التلغرام */
+
+const token = "ضع_توكن_البوت";
+
+const chat_id = "ضع_chat_id";
+
+/* إرسال الطلب */
+
+document.getElementById("form").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+let name = document.getElementById("name").value;
+
+let phone = document.getElementById("phone").value;
+
+let wilaya = document.getElementById("wilaya").value;
+
+let serviceText =
+document.getElementById("service").selectedOptions[0].text;
+
+let price =
+document.getElementById("price").innerText;
+
+let text =
+
+`طلب جديد
+
+الاسم: ${name}
+
+الهاتف: ${phone}
+
+الولاية: ${wilaya}
+
+الخدمة: ${serviceText}
+
+السعر: ${price} دج`;
+
+try{
+
+/* إرسال النص */
+
+await fetch(
+
+`https://api.telegram.org/bot${token}/sendMessage`,
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+body:JSON.stringify({
+
+chat_id:chat_id,
+
+text:text
+
+})
+
+}
+
+);
+
+/* إرسال الصورة */
+
+let file =
+document.getElementById("receipt").files[0];
+
+if(file){
+
+let formData = new FormData();
+
+formData.append("chat_id", chat_id);
+
+formData.append("photo", file);
+
+formData.append("caption", text);
+
+await fetch(
+
+`https://api.telegram.org/bot${token}/sendPhoto`,
+
+{
+
+method:"POST",
+
+body:formData
+
+}
+
+);
+
+}
+
+alert("تم إرسال الطلب بنجاح");
+
+document.getElementById("form").reset();
+
+document.getElementById("price").innerText = "8000";
+
+}
+catch(error){
+
+alert("حدث خطأ أثناء الإرسال");
+
+console.log(error);
+
+}
+
+});
 
 </script>
 
 </body>
-                         </html>
+
+</html>
